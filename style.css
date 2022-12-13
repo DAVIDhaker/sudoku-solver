@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+:root {
+    --cell-size: 55px;
+}
+
+body {
+    background-image: linear-gradient( 83.2deg, rgb(150, 93, 233) 10.8%, rgba(99,88,238,1) 94.3% );
+}
+
+#app {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4rem;
+}
+
+#app tbody {
+    border: 1px solid red;
+}
+
+#app tbody td {
+    transition: transform .1s ease-out;
+    cursor: pointer;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    font-family: "Hack Nerd Font Mono", monospace;
+    color: white;
+    border: 2px dashed lightgray;
+}
+
+/* region Bold borders */
+#app tbody td:nth-child(3),
+#app tbody td:nth-child(6),
+#app tbody td:nth-child(9) {
+    border-right: solid;
+}
+
+#app tbody tr:nth-child(3) td,
+#app tbody tr:nth-child(6) td,
+#app tbody tr:nth-child(9) td {
+    border-bottom: solid;
+}
+
+#app tbody tr:first-child td {
+    border-top: solid;
+}
+
+#app tbody tr td:first-child {
+    border-left: solid;
+}
+/* endregion */
+
+#app tbody td:hover {
+    transform: scale(1.2);
+}
+
+#app tbody td::after {
+    content: '';
+    position: relative;
+    font-size: calc(var(--cell-size) * .55);
+}
+
+#app tbody td:not([data-value=""])::after {
+    content: '✕';
+    color: #fff3;
+}
+
+#app tbody td[data-value]::after {
+    content: attr(data-value);
+    color: white;
+}
+
+#app tbody td.focused::after {
+    background-color: white;
+    color: #965DE9FF;
+    border-radius: 50%;
+    width: calc(var(--cell-size) * .75);
+    height: calc(var(--cell-size) * .75);
+    margin: auto;
+    line-height: calc(var(--cell-size) * .75);
+    display: inline-block;
+    overflow: clip;
+}
+
+#app tbody td.auto::after {
+    text-decoration-style: wavy;
+}
+
+
+input[type="button"] {
+    outline: none;
+    cursor: pointer;
+    padding: 10px 18px;
+    margin: 12px 0;
+    background: transparent;
+    border: 2px darkgray dashed;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: border .2s linear, transform .2s linear;
+}
+
+input[type="button"]:not([disabled]):hover {
+    border-color: white;
+}
+
+input[type="button"]:not([disabled]):active {
+    transform: scale(.85);
+}
+
+
+input[type="button"][disabled] {
+    color: darkgray;
+    text-decoration: line-through;
+}
